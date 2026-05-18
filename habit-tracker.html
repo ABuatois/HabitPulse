@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1a1a2e">
+<title>HabitPulse</title>
+<link rel="icon" type="image/png" sizes="192x192" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAADZklEQVR42u3c0ZHiQBBEQTzQPwbiLxYJG0BCmpmXHVEOtCr7dm8Rj4cxxhhjjDHGDDjb9txlrmitggsgCi9AKL60IXiwkoTgQUoSggcnWQgeliQReECSheChSBaBhyFZBB6CZBFYvmQRWLpkEVi2ZBFYsqQRWPD12d+vYZIGoIwAZP8VUEQAZgJwOgJFVP7s7wKKCMCMAE5DoIjKn/0fIUUEYGYAhxEoIgDZvwsoofKvAOBnBIoIQPavw0qo/CsB+BqBIgKQ/oyQIgIAgCh/EYAiApD+qLQi+uUXAHH9ARAAABDlB0AAAECUHwABYGEACtkE4GtTAHD9AQDA9QdAMV1/AMT1B0AAAED8+AOAuP4AiOsPgLj+AAgAAIjyAyAAACDKD4AAAIAMDMAzAMD1FwBcfwAAcP0BAAAAAADw4w8AALj+AADg+gNgQa4/AOL6AyAAACDKD4AAAIAoPwACAAAyMAD7B8D1FwAAEACUXwAAQADwy68A4PoLAK4/AAC4/gAA4PoDAAAAAACg/AAAAAAAAEz3zq/3jgEAAAAAAFB+AJRf+QEAAAAAlF/5AQBA+QEAAAAAlF/5AQBA+QGADgAAAEh/7ggAANIfugMAAAAAUP7qR64BACD9vgEAAKRftgEAAAAAUP7qq5YAAJB+zxgAAAAAAIDqt0wAoPzpr1gBAAAAAACg+gVbAACQ/nY5AJQfAAAA8N2gAGQBlPcLQBxAfb8AuP4AAOD6AwBACoD9AgCAAKD8AAAQAmC3AAAgACi/ABACYK8AACAAFAHYKQDKLwAAIACEANgnAFkAdgmA8gsAAAgAIQD2CEAWgB0C4PoLAK6/ABACYH8AACAAKL8AEAJgdwAAIAAUAdgbAMovANQA2BkAAAgARQD2BYDyCwAACAAhAHYFgPILAADIpQAguBeAPd1cfgDuA2BHALj+AoDrLwCEANgPAAAIAMovAIQA2M2gACD4PwB7Gbj8AAAAgIUpPwByNgA7mQQABACkyw/A+QDsYzIAECh/uvwAAJAHAMFxAHYxcfkBOAbAHhYAAIHrny4/AK5/HgAEki4/BJIvPwCSBwCBpMsPgeTLD4Hkyw+B5MsPgeTLD4Hkyw+B5MsPguSLD4EoPwii+CCI4oMgig+CKD4QovCAKLgxxhhjjBlgPh1ujtOxC+ISAAAAAElFTkSuQmCC">
+<link rel="apple-touch-icon" sizes="192x192" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAADZklEQVR42u3c0ZHiQBBEQTzQPwbiLxYJG0BCmpmXHVEOtCr7dm8Rj4cxxhhjjDHGDDjb9txlrmitggsgCi9AKL60IXiwkoTgQUoSggcnWQgeliQReECSheChSBaBhyFZBB6CZBFYvmQRWLpkEVi2ZBFYsqQRWPD12d+vYZIGoIwAZP8VUEQAZgJwOgJFVP7s7wKKCMCMAE5DoIjKn/0fIUUEYGYAhxEoIgDZvwsoofKvAOBnBIoIQPavw0qo/CsB+BqBIgKQ/oyQIgIAgCh/EYAiApD+qLQi+uUXAHH9ARAAABDlB0AAAECUHwABYGEACtkE4GtTAHD9AQDA9QdAMV1/AMT1B0AAAED8+AOAuP4AiOsPgLj+AAgAAIjyAyAAACDKD4AAAIAMDMAzAMD1FwBcfwAAcP0BAAAAAADw4w8AALj+AADg+gNgQa4/AOL6AyAAACDKD4AAAIAoPwACAAAyMAD7B8D1FwAAEACUXwAAQADwy68A4PoLAK4/AAC4/gAA4PoDAAAAAACg/AAAAAAAAEz3zq/3jgEAAAAAAFB+AJRf+QEAAAAAlF/5AQBA+QEAAAAAlF/5AQBA+QGADgAAAEh/7ggAANIfugMAAAAAUP7qR64BACD9vgEAAKRftgEAAAAAUP7qq5YAAJB+zxgAAAAAAIDqt0wAoPzpr1gBAAAAAACg+gVbAACQ/nY5AJQfAAAA8N2gAGQBlPcLQBxAfb8AuP4AAOD6AwBACoD9AgCAAKD8AAAQAmC3AAAgACi/ABACYK8AACAAFAHYKQDKLwAAIACEANgnAFkAdgmA8gsAAAgAIQD2CEAWgB0C4PoLAK6/ABACYH8AACAAKL8AEAJgdwAAIAAUAdgbAMovANQA2BkAAAgARQD2BYDyCwAACAAhAHYFgPILAADIpQAguBeAPd1cfgDuA2BHALj+AoDrLwCEANgPAAAIAMovAIQA2M2gACD4PwB7Gbj8AAAAgIUpPwByNgA7mQQABACkyw/A+QDsYzIAECh/uvwAAJAHAMFxAHYxcfkBOAbAHhYAAIHrny4/AK5/HgAEki4/BJIvPwCSBwCBpMsPgeTLD4Hkyw+B5MsPgeTLD4Hkyw+B5MsPguSLD4EoPwii+CCI4oMgig+CKD4QovCAKLgxxhhjjBlgPh1ujtOxC+ISAAAAAElFTkSuQmCC">
+<style>
+  :root {
+    --bg: #0f0f1a;
+    --surface: #1a1a2e;
+    --surface2: #16213e;
+    --accent: #e94560;
+    --accent2: #0f3460;
+    --teal: #00b4d8;
+    --green: #06d6a0;
+    --amber: #ffd166;
+    --text: #f0f0f5;
+    --text2: #9090aa;
+    --border: rgba(255,255,255,0.08);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: -apple-system, 'SF Pro Display', 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 480px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    display: flex;
+    z-index: 100;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  nav button {
+    flex: 1; background: none; border: none; color: var(--text2);
+    padding: 14px 0 12px;
+    font-size: 11px; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    transition: color 0.2s;
+  }
+  nav button.active { color: var(--accent); }
+  nav button svg { width: 22px; height: 22px; }
+
+  /* PAGES */
+  .page { display: none; padding: 0; }
+  .page.active { display: block; }
+
+  /* HEADER */
+  .header {
+    padding: 56px 20px 20px;
+    background: linear-gradient(180deg, var(--surface2) 0%, transparent 100%);
+  }
+  .header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+  .header h1 span { color: var(--accent); }
+  .header p { font-size: 14px; color: var(--text2); margin-top: 4px; }
+
+  /* DATE STRIP */
+  .date-strip {
+    display: flex; gap: 8px; padding: 0 20px 20px;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .date-strip::-webkit-scrollbar { display: none; }
+  .date-pill {
+    flex-shrink: 0; background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 50px; padding: 8px 16px;
+    font-size: 13px; cursor: pointer;
+    transition: all 0.2s;
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+  }
+  .date-pill .dow { font-size: 10px; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; }
+  .date-pill .dom { font-size: 15px; font-weight: 600; }
+  .date-pill.today { border-color: var(--accent); }
+  .date-pill.selected { background: var(--accent); border-color: var(--accent); }
+  .date-pill.selected .dow { color: rgba(255,255,255,0.7); }
+  .date-pill.has-data::after {
+    content: ''; width: 4px; height: 4px;
+    background: var(--green); border-radius: 50%;
+    display: block; margin-top: 2px;
+  }
+  .date-pill.selected.has-data::after { background: white; }
+
+  /* SECTION */
+  .section { padding: 0 20px 24px; }
+  .section-title {
+    font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--text2); margin-bottom: 12px;
+  }
+
+  /* SCORE CARD */
+  .score-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    display: flex; align-items: center; gap: 20px;
+    margin-bottom: 24px;
+  }
+  .score-ring {
+    width: 72px; height: 72px; flex-shrink: 0;
+    position: relative;
+  }
+  .score-ring svg { transform: rotate(-90deg); }
+  .score-ring .score-num {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    transform: none;
+    font-size: 20px; font-weight: 700;
+    line-height: 1;
+  }
+  .score-ring .score-num small { font-size: 10px; color: var(--text2); font-weight: 400; }
+  .score-info h3 { font-size: 18px; font-weight: 700; }
+  .score-info p { font-size: 13px; color: var(--text2); margin-top: 4px; }
+  .streak-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(255, 209, 102, 0.15);
+    border: 1px solid rgba(255, 209, 102, 0.3);
+    color: var(--amber); border-radius: 50px;
+    padding: 3px 10px; font-size: 12px; font-weight: 600;
+    margin-top: 6px;
+  }
+
+  /* HABIT CARDS */
+  .habit-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 16px;
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+  .habit-card.done { border-color: var(--green); }
+  .habit-card.done .habit-icon { background: rgba(6, 214, 160, 0.15); }
+  .habit-icon {
+    width: 46px; height: 46px; border-radius: 12px;
+    background: var(--surface2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .habit-icon.workout-active { background: rgba(255,209,102,0.18); }
+  .habit-body { flex: 1; min-width: 0; }
+  .habit-name { font-size: 15px; font-weight: 600; }
+  .habit-sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
+
+  /* WATER CONTROL */
+  .water-amt { font-size: 14px; font-weight: 600; margin-top: 4px; }
+  .water-quick-btns { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .water-quick-btn {
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--teal); font-size: 12px; font-weight: 600;
+    padding: 5px 10px; border-radius: 20px; cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .water-quick-btn:active { background: rgba(0,180,216,0.15); border-color: var(--teal); }
+  .water-undo-btn {
+    background: none; border: 1px solid var(--border);
+    color: var(--text2); font-size: 12px;
+    padding: 5px 10px; border-radius: 20px; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .water-undo-btn:active { background: var(--surface2); }
+  .water-progress {
+    height: 4px; background: var(--surface2);
+    border-radius: 2px; margin-top: 8px; overflow: hidden;
+  }
+  .water-progress-fill { height: 100%; background: var(--teal); border-radius: 2px; transition: width 0.3s; }
+
+  .check-btn {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 2px solid var(--border);
+    background: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: all 0.2s;
+  }
+  .check-btn.done { background: var(--green); border-color: var(--green); }
+  .check-btn svg { width: 16px; height: 16px; stroke: white; stroke-width: 2.5; fill: none; }
+
+  /* ADD HABIT */
+  .fab {
+    position: fixed; bottom: 80px; right: 20px;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--accent); border: none; color: white;
+    font-size: 26px; cursor: pointer; box-shadow: 0 4px 20px rgba(233,69,96,0.4);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 50; transition: transform 0.15s;
+  }
+  .fab:active { transform: scale(0.94); }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.75); backdrop-filter: blur(4px);
+    z-index: 200; display: flex; align-items: flex-end;
+    opacity: 0; pointer-events: none; transition: opacity 0.25s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--surface);
+    border-radius: 24px 24px 0 0;
+    padding: 24px 24px 40px;
+    width: 100%; max-width: 480px; margin: 0 auto;
+    transform: translateY(30px); transition: transform 0.25s;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal h2 { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+  .modal label { display: block; font-size: 12px; color: var(--text2); letter-spacing: 0.5px; margin-bottom: 6px; }
+  .modal input, .modal select {
+    width: 100%; background: var(--bg);
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    color: var(--text); font-size: 15px; padding: 12px 14px;
+    margin-bottom: 16px; outline: none;
+    transition: border-color 0.2s;
+  }
+  .modal input:focus, .modal select:focus { border-color: var(--accent); }
+  .modal select option { background: var(--surface); }
+  .emoji-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .emoji-btn {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--surface2); border: 2px solid transparent;
+    font-size: 22px; cursor: pointer; transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .emoji-btn.selected { border-color: var(--accent); background: rgba(233,69,96,0.15); }
+  .btn-row { display: flex; gap: 10px; margin-top: 4px; }
+  .btn-primary {
+    flex: 1; background: var(--accent); border: none;
+    color: white; font-size: 15px; font-weight: 600;
+    padding: 14px; border-radius: var(--radius-sm); cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .btn-primary:active { opacity: 0.85; }
+  .btn-secondary {
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text2); font-size: 15px;
+    padding: 14px 20px; border-radius: var(--radius-sm); cursor: pointer;
+  }
+
+  /* STATS PAGE */
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .stat-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+  .stat-box .stat-val { font-size: 28px; font-weight: 700; }
+  .stat-box .stat-lbl { font-size: 12px; color: var(--text2); margin-top: 4px; }
+  .stat-box .stat-val.teal { color: var(--teal); }
+  .stat-box .stat-val.green { color: var(--green); }
+  .stat-box .stat-val.amber { color: var(--amber); }
+  .stat-box .stat-val.accent { color: var(--accent); }
+
+  /* HABIT STATS */
+  .habit-stat-row {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 14px 16px;
+    margin-bottom: 10px; display: flex; align-items: center; gap: 14px;
+  }
+  .habit-stat-bar {
+    flex: 1; height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden;
+  }
+  .habit-stat-fill { height: 100%; border-radius: 3px; background: var(--teal); }
+
+  /* CALENDAR HEATMAP */
+  .heatmap {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    gap: 4px; margin-top: 12px;
+  }
+  .heat-cell {
+    aspect-ratio: 1; border-radius: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; color: var(--text2); cursor: default;
+    transition: all 0.15s;
+  }
+  .heat-cell.h1 { background: rgba(6,214,160,0.2); border-color: rgba(6,214,160,0.3); }
+  .heat-cell.h2 { background: rgba(6,214,160,0.5); border-color: rgba(6,214,160,0.5); }
+  .heat-cell.h3 { background: rgba(6,214,160,0.8); border-color: var(--green); color: var(--bg); }
+  .heat-cell.empty { opacity: 0; pointer-events: none; }
+
+  /* SETTINGS PAGE */
+  .settings-section { padding: 0 20px 24px; }
+  .setting-row {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 14px 16px;
+    margin-bottom: 10px; display: flex;
+    justify-content: space-between; align-items: center;
+  }
+  .setting-row label { font-size: 14px; }
+  .setting-row small { display: block; font-size: 12px; color: var(--text2); margin-top: 2px; }
+  .setting-row input {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 8px; color: var(--text); font-size: 14px;
+    padding: 6px 10px; width: 80px; text-align: center; outline: none;
+  }
+  .danger-btn {
+    width: 100%; background: rgba(233,69,96,0.1);
+    border: 1px solid rgba(233,69,96,0.3);
+    color: var(--accent); font-size: 14px; font-weight: 600;
+    padding: 14px; border-radius: var(--radius-sm); cursor: pointer;
+    margin-top: 8px; transition: background 0.15s;
+  }
+  .danger-btn:active { background: rgba(233,69,96,0.2); }
+
+  .delete-habit-btn {
+    background: none; border: none; color: var(--text2);
+    font-size: 18px; cursor: pointer; padding: 4px;
+    border-radius: 6px; transition: color 0.15s;
+  }
+  .delete-habit-btn:hover { color: var(--accent); }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--green); color: var(--bg);
+    padding: 10px 22px; border-radius: 50px;
+    font-size: 13px; font-weight: 600;
+    opacity: 0; transition: all 0.3s;
+    z-index: 300; white-space: nowrap;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* Install banner */
+  .install-banner {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 14px 16px;
+    margin: 0 20px 16px; display: flex; align-items: center; gap: 12px;
+  }
+  .install-banner p { font-size: 13px; color: var(--text2); }
+  .install-banner strong { color: var(--text); }
+  .install-banner button {
+    flex-shrink: 0; background: var(--accent); border: none;
+    color: white; font-size: 12px; font-weight: 600;
+    padding: 8px 14px; border-radius: 8px; cursor: pointer;
+  }
+
+  .heatmap-legend { display: flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 11px; color: var(--text2); }
+  .heatmap-legend div { width: 12px; height: 12px; border-radius: 3px; }
+
+  /* REWARDS */
+  .wallet-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px 20px 20px;
+    margin-bottom: 20px;
+  }
+  .wallet-top { display: flex; align-items: flex-start; justify-content: space-between; }
+  .wallet-balance { font-size: 52px; font-weight: 700; color: var(--amber); line-height: 1; }
+  .wallet-balance small { font-size: 16px; font-weight: 400; color: var(--text2); margin-left: 4px; }
+  .wallet-earned { font-size: 13px; color: var(--text2); margin-top: 8px; }
+  .wallet-earned span { color: var(--green); font-weight: 600; }
+  .pts-chart { display: flex; align-items: flex-end; gap: 3px; height: 56px; margin: 18px 0 4px; }
+  .pts-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .pts-bar { width: 100%; border-radius: 3px 3px 0 0; background: var(--accent); min-height: 2px; }
+  .pts-bar-lbl { font-size: 8px; color: var(--text2); }
+  .spend-btn {
+    background: rgba(255,209,102,0.12); border: 1px solid rgba(255,209,102,0.35);
+    color: var(--amber); font-size: 13px; font-weight: 600;
+    padding: 10px 18px; border-radius: var(--radius-sm); cursor: pointer;
+    transition: background 0.15s; white-space: nowrap;
+  }
+  .spend-btn:active { background: rgba(255,209,102,0.25); }
+  .reward-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px 20px;
+    margin-bottom: 10px; display: flex; align-items: center; gap: 14px;
+  }
+  .reward-icon { font-size: 28px; flex-shrink: 0; }
+  .reward-body { flex: 1; min-width: 0; }
+  .reward-name { font-size: 15px; font-weight: 600; }
+  .reward-cost { font-size: 12px; color: var(--amber); margin-top: 2px; font-weight: 600; }
+  .reward-desc { font-size: 12px; color: var(--text2); margin-top: 2px; }
+  .redeem-btn {
+    flex-shrink: 0; background: rgba(255,209,102,0.12);
+    border: 1px solid rgba(255,209,102,0.35);
+    color: var(--amber); font-size: 13px; font-weight: 600;
+    padding: 8px 14px; border-radius: 8px; cursor: pointer;
+    transition: background 0.15s; white-space: nowrap;
+  }
+  .redeem-btn:active { background: rgba(255,209,102,0.25); }
+  .redeem-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .tx-list { margin-top: 4px; }
+  .tx-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px;
+  }
+  .tx-row:last-child { border-bottom: none; }
+  .tx-label { color: var(--text); }
+  .tx-date { color: var(--text2); font-size: 11px; margin-top: 2px; }
+  .tx-amt-pos { color: var(--green); font-weight: 700; }
+  .tx-amt-neg { color: var(--accent); font-weight: 700; }
+  .spend-modal-row { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 16px; }
+  .spend-modal-row input { flex: 1; margin-bottom: 0; }
+</style>
+</head>
+<body>
+
+<!-- PAGES -->
+<div id="page-today" class="page active">
+  <div class="header">
+    <h1>Habit<span>Pulse</span></h1>
+    <p id="today-label">Loading...</p>
+  </div>
+
+  <div class="date-strip" id="date-strip"></div>
+
+  <div class="section">
+    <div class="score-card">
+      <div class="score-ring">
+        <svg width="72" height="72" viewBox="0 0 72 72">
+          <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="6"/>
+          <circle id="ring-fill" cx="36" cy="36" r="30" fill="none" stroke="#06d6a0"
+            stroke-width="6" stroke-linecap="round"
+            stroke-dasharray="188.4" stroke-dashoffset="188.4"
+            style="transition: stroke-dashoffset 0.5s ease"/>
+        </svg>
+        <div class="score-num" id="ring-label"><span>0</span><small>pts</small></div>
+      </div>
+      <div class="score-info">
+        <h3 id="day-score-label">Today's score</h3>
+        <p id="day-score-detail">Complete habits to earn points</p>
+        <div class="streak-badge" id="streak-badge">🔥 0 day streak</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Today's Habits</div>
+    <div id="habits-list"></div>
+    <div id="no-habits" style="color: var(--text2); font-size: 14px; text-align: center; padding: 30px 0; display: none;">
+      No habits yet — tap + to add one!
+    </div>
+  </div>
+</div>
+
+<div id="page-stats" class="page">
+  <div class="header">
+    <h1>Progress</h1>
+    <p>Your habits over time</p>
+  </div>
+  <div class="section">
+    <div class="stat-grid" id="stat-grid"></div>
+  </div>
+  <div class="section">
+    <div class="section-title">Habit completion rate</div>
+    <div id="habit-bars"></div>
+  </div>
+  <div class="section">
+    <div class="section-title">Activity heatmap (last 5 weeks)</div>
+    <div id="heatmap-dow" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px;">
+      <div style="font-size:9px;color:var(--text2);text-align:center">S</div>
+      <div style="font-size:9px;color:var(--text2);text-align:center">M</div>
+      <div style="font-size:9px;color:var(--text2);text-align:center">T</div>
+      <div style="font-size:9px;color:var(--text2);text-align:center">W</div>
+      <div style="font-size:9px;color:var(--text2);text-align:center">T</div>
+      <div style="font-size:9px;color:var(--text2);text-align:center">F</div>
+      <div style="font-size:9px;color:var(--text2);text-align:center">S</div>
+    </div>
+    <div class="heatmap" id="heatmap"></div>
+    <div class="heatmap-legend">
+      <span>Less</span>
+      <div style="background:var(--surface);border:1px solid var(--border)"></div>
+      <div class="h1" style="background:rgba(6,214,160,0.2)"></div>
+      <div class="h2" style="background:rgba(6,214,160,0.5)"></div>
+      <div class="h3" style="background:rgba(6,214,160,0.8)"></div>
+      <span>More</span>
+    </div>
+  </div>
+</div>
+
+<div id="page-settings" class="page">
+  <div class="header">
+    <h1>Settings</h1>
+    <p>Manage your habits</p>
+  </div>
+  <div class="settings-section">
+    <div class="section-title">Manage Habits</div>
+    <div id="settings-habits-list"></div>
+    <div class="section-title" style="margin-top:20px">Data</div>
+    <button class="danger-btn" onclick="exportData()">📤 Export data (JSON)</button>
+    <button class="danger-btn" onclick="resetData()" style="margin-top:8px">🗑️ Reset all data</button>
+  </div>
+</div>
+
+
+<div id="page-rewards" class="page">
+  <div class="header">
+    <h1>Rewards</h1>
+    <p>Spend your hard-earned points</p>
+  </div>
+  <div class="section">
+    <div class="wallet-card">
+      <div class="wallet-top">
+        <div>
+          <div class="wallet-balance" id="wallet-balance">0 <small>pts</small></div>
+          <div class="wallet-earned">Total earned: <span id="wallet-total">0 pts</span></div>
+        </div>
+        <button class="spend-btn" onclick="openSpendModal()">− Spend</button>
+      </div>
+      <div class="pts-chart" id="pts-chart"></div>
+      <div style="text-align:center;font-size:10px;color:var(--text2)">Points per day — last 14 days</div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">Rewards list</div>
+    <div id="rewards-list"></div>
+    <button class="btn-primary" onclick="openAddRewardModal()" style="width:100%;margin-top:8px">+ Add reward</button>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button class="btn-secondary" onclick="exportRewards()" style="flex:1;font-size:13px;padding:10px">📤 Share list</button>
+      <label style="flex:1;margin:0">
+        <input type="file" id="import-rewards-input" accept=".json" style="display:none" onchange="importRewards(event)">
+        <div class="btn-secondary" onclick="document.getElementById('import-rewards-input').click()" style="font-size:13px;padding:10px;text-align:center;cursor:pointer;border-radius:var(--radius-sm);background:var(--surface2);border:1px solid var(--border);color:var(--text2)">📥 Import list</div>
+      </label>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">History</div>
+    <div class="wallet-card" style="padding:12px 16px">
+      <div class="tx-list" id="tx-list">
+        <div style="color:var(--text2);font-size:13px;text-align:center;padding:12px 0">No transactions yet</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SPEND MODAL -->
+<div class="modal-overlay" id="spend-modal">
+  <div class="modal">
+    <h2>Spend points</h2>
+    <label>Reason / reward label</label>
+    <input type="text" id="spend-label" placeholder="e.g. Movie night, Restaurant…">
+    <label>Points to spend</label>
+    <div class="spend-modal-row">
+      <input type="number" id="spend-amount" placeholder="10" min="1">
+    </div>
+    <div style="font-size:12px;color:var(--text2);margin-bottom:16px" id="spend-balance-hint"></div>
+    <div class="btn-row">
+      <button class="btn-secondary" onclick="closeSpendModal()">Cancel</button>
+      <button class="btn-primary" onclick="confirmSpend()">Confirm spend</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD REWARD MODAL -->
+<div class="modal-overlay" id="add-reward-modal">
+  <div class="modal">
+    <h2>Add reward</h2>
+    <label>Reward name</label>
+    <input type="text" id="reward-name" placeholder="e.g. Movie night, Massage…">
+    <label>Cost (points)</label>
+    <input type="number" id="reward-cost" placeholder="20" min="1">
+    <label>Description (optional)</label>
+    <input type="text" id="reward-desc" placeholder="e.g. Pick a film together">
+    <label>Icon</label>
+    <div class="emoji-grid" id="reward-emoji-grid"></div>
+    <div class="btn-row">
+      <button class="btn-secondary" onclick="closeAddRewardModal()">Cancel</button>
+      <button class="btn-primary" onclick="saveReward()">Save reward</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <button class="active" onclick="showPage('today')" id="nav-today">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
+    Today
+  </button>
+  <button onclick="showPage('stats')" id="nav-stats">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 5-5"/></svg>
+    Progress
+  </button>
+  <button onclick="showPage('rewards')" id="nav-rewards">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    Rewards
+  </button>
+  <button onclick="showPage('settings')" id="nav-settings">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    Settings
+  </button>
+</nav>
+
+<!-- FAB -->
+<button class="fab" id="fab-btn" onclick="openAddModal()">+</button>
+
+<!-- ADD HABIT MODAL -->
+<div class="modal-overlay" id="add-modal">
+  <div class="modal">
+    <h2 id="modal-title">Add Habit</h2>
+    <label>Habit name</label>
+    <input type="text" id="habit-name" placeholder="e.g. No snacks, Meditate…">
+    <label>Type</label>
+    <select id="habit-type" onchange="toggleWaterFields()">
+      <option value="boolean">Yes / No (checkbox)</option>
+      <option value="workout">Workout day 💪 (boosts water target)</option>
+      <option value="water">Water intake (quantity)</option>
+      <option value="counter">Counter (custom number)</option>
+    </select>
+    <div id="water-fields" style="display:none">
+      <label>Daily target (mL)</label>
+      <input type="number" id="water-target" placeholder="2000" step="50" min="100">
+      <div style="font-size:12px;color:var(--text2);margin-top:-10px;margin-bottom:16px">Examples: 1500 mL, 2000 mL, 2500 mL</div>
+    </div>
+    <div id="counter-fields" style="display:none">
+      <label>Target count per day</label>
+      <input type="number" id="counter-target" placeholder="10" min="1">
+      <label>Unit label</label>
+      <input type="text" id="counter-unit" placeholder="e.g. push-ups, pages…">
+    </div>
+    <label>Icon</label>
+    <div class="emoji-grid" id="emoji-grid"></div>
+    <div class="btn-row">
+      <button class="btn-secondary" onclick="closeAddModal()">Cancel</button>
+      <button class="btn-primary" onclick="saveHabit()">Save Habit</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const EMOJIS = ['💧','🥗','🏃','🧘','📚','💪','🚭','🥦','😴','☀️','🎯','🧠','🚶','🍎','✍️','🫁','🛌','🚿','🧴','🥤'];
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+// ─── Storage helpers ───────────────────────────────────────────
+function load(key, def) {
+  try { return JSON.parse(localStorage.getItem(key)) ?? def; }
+  catch { return def; }
+}
+function save(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
+
+function getHabits() { return load('hp_habits', []); }
+function setHabits(h) { save('hp_habits', h); }
+function getLogs() { return load('hp_logs', {}); }
+function setLogs(l) { save('hp_logs', l); }
+
+// ─── Date helpers ──────────────────────────────────────────────
+function dateKey(d) {
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function todayKey() { return dateKey(new Date()); }
+
+let selectedDate = todayKey();
+
+// ─── Page nav ─────────────────────────────────────────────────
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.getElementById('nav-'+name).classList.add('active');
+  document.getElementById('fab-btn').style.display = name === 'today' ? 'flex' : 'none';
+  if (name === 'stats') renderStats();
+  if (name === 'settings') renderSettings();
+  if (name === 'rewards') renderRewards();
+}
+
+// ─── Date strip ───────────────────────────────────────────────
+function renderDateStrip() {
+  const strip = document.getElementById('date-strip');
+  const logs = getLogs();
+  strip.innerHTML = '';
+  const today = new Date();
+  for (let i = 13; i >= 0; i--) {
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    const key = dateKey(d);
+    const pill = document.createElement('div');
+    pill.className = 'date-pill' +
+      (i === 0 ? ' today' : '') +
+      (key === selectedDate ? ' selected' : '') +
+      (logs[key] ? ' has-data' : '');
+    pill.innerHTML = `<span class="dow">${DAYS[d.getDay()]}</span><span class="dom">${d.getDate()}</span>`;
+    pill.onclick = () => { selectedDate = key; renderDateStrip(); renderToday(); };
+    strip.appendChild(pill);
+  }
+  // scroll selected into view
+  setTimeout(() => {
+    const sel = strip.querySelector('.selected');
+    if (sel) sel.scrollIntoView({block:'nearest',inline:'center'});
+  }, 50);
+  // header label
+  const sd = new Date(selectedDate + 'T12:00:00');
+  const isToday = selectedDate === todayKey();
+  document.getElementById('today-label').textContent =
+    isToday ? 'Today, ' + MONTHS[sd.getMonth()] + ' ' + sd.getDate() :
+    DAYS[sd.getDay()] + ', ' + MONTHS[sd.getMonth()] + ' ' + sd.getDate();
+}
+
+// ─── Today view ───────────────────────────────────────────────
+function renderToday() {
+  const habits = getHabits();
+  const logs = getLogs();
+  const dayLog = logs[selectedDate] || {};
+  const list = document.getElementById('habits-list');
+  const noH = document.getElementById('no-habits');
+  list.innerHTML = '';
+
+  let pts = 0, maxPts = 0;
+
+  habits.forEach(h => {
+    maxPts += h.points || 1;
+    const val = dayLog[h.id];
+    let done = false;
+    const card = document.createElement('div');
+    card.className = 'habit-card';
+
+    if (h.type === 'workout') {
+      done = !!val;
+      if (done) pts += h.points || 1;
+      const bonusMl = parseInt(load('hp_workout_bonus', 1000));
+      card.innerHTML = `
+        <div class="habit-icon ${done ? 'workout-active' : ''}">${h.emoji}</div>
+        <div class="habit-body">
+          <div class="habit-name">${h.name}</div>
+          <div class="habit-sub">${done
+            ? `✓ Workout done! +${formatMl(bonusMl)} water target`
+            : `Tap when done · adds +${formatMl(bonusMl)} to water goal`}</div>
+        </div>
+        <div class="check-btn ${done?'done':''}" onclick="toggleBoolean('${h.id}')">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>`;
+      card.onclick = (e) => { if (!e.target.closest('.check-btn')) toggleBoolean(h.id); };
+    } else if (h.type === 'water') {
+      const baseMl = parseFloat(h.waterTargetMl) || 2000;
+      // Check if any workout habit is done today → add bonus
+      const bonusMl = parseInt(load('hp_workout_bonus', 1000));
+      const workoutDone = habits.some(wh => wh.type === 'workout' && !!dayLog[wh.id]);
+      const targetMl = baseMl + (workoutDone ? bonusMl : 0);
+      const curMl = parseFloat(val) || 0;
+      done = curMl >= targetMl;
+      if (done) pts += h.points || 1;
+      const pct = Math.min(100, curMl / targetMl * 100);
+      const quickBtns = (h.quickAmounts || [{label:'Glass',ml:330},{label:'50cl',ml:500},{label:'1L',ml:1000}])
+        .map(q => `<button class="water-quick-btn" onclick="addWaterMl('${h.id}',${q.ml})">+${q.label}</button>`)
+        .join('');
+      const workoutTag = workoutDone
+        ? `<span style="font-size:11px;color:var(--amber);margin-left:6px">+${formatMl(bonusMl)} workout</span>` : '';
+      card.innerHTML = `
+        <div class="habit-icon">${h.emoji}</div>
+        <div class="habit-body">
+          <div class="habit-name">${h.name}</div>
+          <div class="water-amt">${formatMl(curMl)} <span style="color:var(--text2);font-weight:400">/ ${formatMl(targetMl)}</span>${workoutTag}</div>
+          <div class="water-quick-btns">
+            ${quickBtns}
+            ${curMl > 0 ? `<button class="water-undo-btn" onclick="addWaterMl('${h.id}',-330)">Undo</button>` : ''}
+          </div>
+          <div class="water-progress"><div class="water-progress-fill" style="width:${pct}%"></div></div>
+        </div>
+        <div class="check-btn ${done?'done':''}" onclick="resetWater('${h.id}',${done},${targetMl})">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>`;
+    } else if (h.type === 'counter') {
+      const target = parseInt(h.counterTarget) || 10;
+      const cur = parseInt(val) || 0;
+      done = cur >= target;
+      if (done) pts += h.points || 1;
+      card.innerHTML = `
+        <div class="habit-icon">${h.emoji}</div>
+        <div class="habit-body">
+          <div class="habit-name">${h.name}</div>
+          <div class="water-control">
+            <button onclick="adjustCounter('${h.id}',-1)">−</button>
+            <span class="water-amt">${cur} / ${target} ${h.counterUnit||''}</span>
+            <button onclick="adjustCounter('${h.id}',1)">+</button>
+          </div>
+          <div class="water-progress"><div class="water-progress-fill" style="width:${Math.min(100,cur/target*100)};background:var(--amber)"></div></div>
+        </div>
+        <div class="check-btn ${done?'done':''}" onclick="adjustCounter('${h.id}',${done?-cur:target})">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>`;
+    } else {
+      done = !!val;
+      if (done) pts += h.points || 1;
+      card.innerHTML = `
+        <div class="habit-icon">${h.emoji}</div>
+        <div class="habit-body">
+          <div class="habit-name">${h.name}</div>
+          <div class="habit-sub">${done ? '✓ Done today!' : 'Tap to mark complete'}</div>
+        </div>
+        <div class="check-btn ${done?'done':''}" onclick="toggleBoolean('${h.id}')">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>`;
+      card.onclick = (e) => { if (!e.target.closest('.check-btn')) toggleBoolean(h.id); };
+    }
+    if (done) card.classList.add('done');
+    list.appendChild(card);
+  });
+
+  noH.style.display = habits.length === 0 ? 'block' : 'none';
+
+  // Score ring
+  const pct = maxPts > 0 ? pts / maxPts : 0;
+  const circ = 188.4;
+  document.getElementById('ring-fill').style.strokeDashoffset = circ - (circ * pct);
+  document.getElementById('ring-label').innerHTML = `<span>${pts}</span><small>pts</small>`;
+  document.getElementById('day-score-label').textContent = selectedDate === todayKey() ? "Today's score" : 'Score';
+  document.getElementById('day-score-detail').textContent = `${pts} of ${maxPts} points earned`;
+
+  // Streak
+  const streak = calcStreak();
+  document.getElementById('streak-badge').textContent = `🔥 ${streak} day streak`;
+}
+
+function toggleBoolean(id) {
+  const logs = getLogs();
+  if (!logs[selectedDate]) logs[selectedDate] = {};
+  logs[selectedDate][id] = !logs[selectedDate][id];
+  if (!logs[selectedDate][id]) delete logs[selectedDate][id];
+  setLogs(logs);
+  renderToday();
+  renderDateStrip();
+}
+
+function formatMl(ml) {
+  if (ml >= 1000) return (ml / 1000).toFixed(ml % 1000 === 0 ? 0 : 1) + ' L';
+  return Math.round(ml) + ' mL';
+}
+
+function addWaterMl(id, deltaMl) {
+  const logs = getLogs();
+  if (!logs[selectedDate]) logs[selectedDate] = {};
+  const cur = parseFloat(logs[selectedDate][id]) || 0;
+  logs[selectedDate][id] = Math.max(0, Math.round(cur + deltaMl));
+  setLogs(logs);
+  renderToday();
+  renderDateStrip();
+}
+
+function resetWater(id, isDone, targetMl) {
+  addWaterMl(id, isDone ? -99999 : targetMl);
+}
+
+function adjustCounter(id, delta) {
+  const logs = getLogs();
+  if (!logs[selectedDate]) logs[selectedDate] = {};
+  const cur = parseInt(logs[selectedDate][id]) || 0;
+  logs[selectedDate][id] = Math.max(0, cur + delta);
+  setLogs(logs);
+  renderToday();
+  renderDateStrip();
+}
+
+// ─── Streak calc ──────────────────────────────────────────────
+function calcStreak() {
+  const habits = getHabits();
+  if (!habits.length) return 0;
+  const logs = getLogs();
+  let streak = 0;
+  const today = new Date();
+  for (let i = 0; i < 365; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    const key = dateKey(d);
+    const log = logs[key] || {};
+    const done = habits.filter(h => {
+      if (h.type === 'water') return parseFloat(log[h.id]||0) >= parseFloat(h.waterTargetMl||2000);
+      if (h.type === 'counter') return parseInt(log[h.id]||0) >= parseInt(h.counterTarget||1);
+      return !!log[h.id]; // boolean + workout
+    });
+    if (done.length === habits.length && habits.length > 0) streak++;
+    else if (i > 0) break;
+  }
+  return streak;
+}
+
+// ─── Stats ─────────────────────────────────────────────────────
+function renderStats() {
+  const habits = getHabits();
+  const logs = getLogs();
+  const days = Object.keys(logs);
+  let totalPts = 0;
+  let bestDay = 0;
+
+  const bonusMl = parseInt(load('hp_workout_bonus', 1000));
+
+  days.forEach(dk => {
+    const log = logs[dk];
+    const workoutDoneDay = habits.some(wh => wh.type === 'workout' && !!log[wh.id]);
+    let dayPts = 0;
+    habits.forEach(h => {
+      let done = false;
+      if (h.type === 'water') {
+        const tgt = (parseFloat(h.waterTargetMl)||2000) + (workoutDoneDay ? bonusMl : 0);
+        done = parseFloat(log[h.id]||0) >= tgt;
+      } else if (h.type === 'counter') done = parseInt(log[h.id]||0) >= parseInt(h.counterTarget||1);
+      else done = !!log[h.id];
+      if (done) dayPts += h.points || 1;
+    });
+    totalPts += dayPts;
+    if (dayPts > bestDay) bestDay = dayPts;
+  });
+
+  const streak = calcStreak();
+  const tracked = days.length;
+
+  document.getElementById('stat-grid').innerHTML = `
+    <div class="stat-box"><div class="stat-val accent">${totalPts}</div><div class="stat-lbl">Total points</div></div>
+    <div class="stat-box"><div class="stat-val amber">${streak}</div><div class="stat-lbl">Day streak 🔥</div></div>
+    <div class="stat-box"><div class="stat-val teal">${tracked}</div><div class="stat-lbl">Days tracked</div></div>
+    <div class="stat-box"><div class="stat-val green">${bestDay}</div><div class="stat-lbl">Best day pts</div></div>`;
+
+  // Habit bars
+  const bars = document.getElementById('habit-bars');
+  bars.innerHTML = '';
+  habits.forEach(h => {
+    let completions = 0;
+    days.forEach(dk => {
+      const log = logs[dk] || {};
+      const workoutDoneDay = habits.some(wh => wh.type === 'workout' && !!log[wh.id]);
+      let done = false;
+      if (h.type === 'water') {
+        const tgt = (parseFloat(h.waterTargetMl)||2000) + (workoutDoneDay ? bonusMl : 0);
+        done = parseFloat(log[h.id]||0) >= tgt;
+      } else if (h.type === 'counter') done = parseInt(log[h.id]||0) >= parseInt(h.counterTarget||1);
+      else done = !!log[h.id];
+      if (done) completions++;
+    });
+    const pct = tracked > 0 ? Math.round(completions / tracked * 100) : 0;
+    bars.innerHTML += `<div class="habit-stat-row">
+      <span style="font-size:20px">${h.emoji}</span>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:600;margin-bottom:6px">${h.name}</div>
+        <div class="habit-stat-bar"><div class="habit-stat-fill" style="width:${pct}%"></div></div>
+      </div>
+      <span style="font-size:13px;font-weight:600;color:var(--teal);margin-left:8px">${pct}%</span>
+    </div>`;
+  });
+  if (!habits.length) bars.innerHTML = '<p style="color:var(--text2);font-size:14px">No habits yet.</p>';
+
+  // Heatmap (last 5 weeks = 35 days)
+  const heatmap = document.getElementById('heatmap');
+  heatmap.innerHTML = '';
+  const today = new Date();
+  const startDow = today.getDay();
+  // pad to fill grid from Sunday
+  const cells = 35;
+  for (let i = cells - 1; i >= 0; i--) {
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    const key = dateKey(d);
+    const log = logs[key] || {};
+    let dayPts = 0, maxPts = 0;
+    habits.forEach(h => {
+      maxPts += h.points || 1;
+      const workoutDoneDay = habits.some(wh => wh.type === 'workout' && !!log[wh.id]);
+      let done = false;
+      if (h.type === 'water') {
+        const tgt = (parseFloat(h.waterTargetMl)||2000) + (workoutDoneDay ? bonusMl : 0);
+        done = parseFloat(log[h.id]||0) >= tgt;
+      } else if (h.type === 'counter') done = parseInt(log[h.id]||0) >= parseInt(h.counterTarget||1);
+      else done = !!log[h.id];
+      if (done) dayPts += h.points || 1;
+    });
+    const pct = maxPts > 0 ? dayPts / maxPts : 0;
+    let cls = 'heat-cell';
+    if (pct > 0 && pct < 0.4) cls += ' h1';
+    else if (pct >= 0.4 && pct < 0.8) cls += ' h2';
+    else if (pct >= 0.8) cls += ' h3';
+    const cell = document.createElement('div');
+    cell.className = cls;
+    cell.title = `${key}: ${dayPts} pts`;
+    heatmap.appendChild(cell);
+  }
+}
+
+// ─── Settings ─────────────────────────────────────────────────
+function renderSettings() {
+  const habits = getHabits();
+  const el = document.getElementById('settings-habits-list');
+  el.innerHTML = '';
+
+  // Global workout bonus setting (shown if any workout or water habit exists)
+  const hasWorkout = habits.some(h => h.type === 'workout');
+  const hasWater = habits.some(h => h.type === 'water');
+  if (hasWorkout || hasWater) {
+    const bonus = load('hp_workout_bonus', 1000);
+    const bonusRow = document.createElement('div');
+    bonusRow.className = 'setting-row';
+    bonusRow.innerHTML = `
+      <div>
+        <div style="font-size:15px">💪 Workout water bonus</div>
+        <small>Extra mL added to water target on workout days</small>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <input type="number" value="${bonus}" min="0" step="50"
+          style="width:80px"
+          onchange="updateWorkoutBonus(this.value)">
+        <span style="font-size:12px;color:var(--text2)">mL</span>
+      </div>`;
+    el.appendChild(bonusRow);
+  }
+
+  habits.forEach(h => {
+    const row = document.createElement('div');
+    row.className = 'setting-row';
+    if (h.type === 'water') {
+      const targetMl = h.waterTargetMl || 2000;
+      row.innerHTML = `
+        <div>
+          <div style="font-size:15px">${h.emoji} ${h.name}</div>
+          <small>Daily water target (base)</small>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <input type="number" value="${targetMl}" min="100" step="50"
+            style="width:80px"
+            onchange="updateWaterTarget('${h.id}',this.value)">
+          <span style="font-size:12px;color:var(--text2)">mL</span>
+          <button class="delete-habit-btn" onclick="deleteHabit('${h.id}')">🗑️</button>
+        </div>`;
+    } else {
+      let sub = h.type === 'workout' ? 'Boosts water target when done' :
+                h.type === 'counter' ? `Target: ${h.counterTarget} ${h.counterUnit}` : 'Checkbox habit';
+      row.innerHTML = `
+        <div><div style="font-size:15px">${h.emoji} ${h.name}</div><small>${sub}</small></div>
+        <button class="delete-habit-btn" onclick="deleteHabit('${h.id}')">🗑️</button>`;
+    }
+    el.appendChild(row);
+  });
+  if (!habits.length) el.innerHTML = '<p style="color:var(--text2);font-size:14px">No habits yet.</p>';
+}
+
+function updateWorkoutBonus(val) {
+  const ml = Math.max(0, parseInt(val) || 1000);  save('hp_workout_bonus', ml);
+  renderToday();
+  showToast('Workout bonus set to +' + formatMl(ml));
+}
+
+function updateWaterTarget(id, val) {
+  const ml = Math.max(100, parseInt(val) || 2000);
+  let habits = getHabits();
+  habits = habits.map(h => h.id === id ? {...h, waterTargetMl: ml} : h);
+  setHabits(habits);
+  renderToday();
+  showToast('Target updated to ' + formatMl(ml));
+}
+
+function deleteHabit(id) {
+  if (!confirm('Delete this habit? Past logs will be kept.')) return;
+  let habits = getHabits();
+  habits = habits.filter(h => h.id !== id);
+  setHabits(habits);
+  renderSettings();
+  renderToday();
+}
+
+function exportData() {
+  const data = { habits: getHabits(), logs: getLogs(), exported: new Date().toISOString() };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'habitpulse-backup.json'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+function resetData() {
+  if (!confirm('Reset ALL data? This cannot be undone!')) return;
+  localStorage.clear();
+  renderToday(); renderDateStrip();
+  showToast('All data cleared');
+}
+
+// ─── Add Habit Modal ──────────────────────────────────────────
+let selectedEmoji = '💧';
+
+function openAddModal() {
+  const grid = document.getElementById('emoji-grid');
+  grid.innerHTML = '';
+  selectedEmoji = EMOJIS[0];
+  EMOJIS.forEach(e => {
+    const btn = document.createElement('button');
+    btn.className = 'emoji-btn' + (e === selectedEmoji ? ' selected' : '');
+    btn.textContent = e;
+    btn.onclick = () => {
+      selectedEmoji = e;
+      grid.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    };
+    grid.appendChild(btn);
+  });
+  document.getElementById('habit-name').value = '';
+  document.getElementById('habit-type').value = 'boolean';
+  document.getElementById('water-target').value = '';
+  document.getElementById('counter-target').value = '';
+  document.getElementById('counter-unit').value = '';
+  toggleWaterFields();
+  document.getElementById('add-modal').classList.add('open');
+  document.getElementById('habit-name').focus();
+}
+
+function closeAddModal() {
+  document.getElementById('add-modal').classList.remove('open');
+}
+
+function toggleWaterFields() {
+  const type = document.getElementById('habit-type').value;
+  document.getElementById('water-fields').style.display = type === 'water' ? 'block' : 'none';
+  document.getElementById('counter-fields').style.display = type === 'counter' ? 'block' : 'none';
+}
+
+function saveHabit() {
+  const name = document.getElementById('habit-name').value.trim();
+  if (!name) { document.getElementById('habit-name').focus(); return; }
+  const type = document.getElementById('habit-type').value;
+  const habit = {
+    id: Date.now().toString(),
+    name, type, emoji: selectedEmoji,
+    points: 1,
+  };
+  if (type === 'water') {
+    habit.waterTargetMl = parseInt(document.getElementById('water-target').value) || 2000;
+    habit.quickAmounts = [
+      {label: 'Glass 33cl', ml: 330},
+      {label: 'Bottle 50cl', ml: 500},
+      {label: 'Bottle 1L', ml: 1000},
+    ];
+  }
+  if (type === 'counter') {
+    habit.counterTarget = parseInt(document.getElementById('counter-target').value) || 10;
+    habit.counterUnit = document.getElementById('counter-unit').value;
+  }
+  const habits = getHabits();
+  habits.push(habit);
+  setHabits(habits);
+  closeAddModal();
+  renderToday();
+  renderDateStrip();
+  showToast('Habit added!');
+}
+
+// ─── Toast ────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+
+// ─── Rewards & Wallet ────────────────────────────────────────
+const REWARD_EMOJIS = ['🎬','🍕','🍫','💆','🛍️','🍷','🎮','🏖️','🎁','💅','🍦','🎭','🚴','🧖','🥂','🎯','🛒','📱','✈️','🌮'];
+
+function getTxLog() { return load('hp_txlog', []); }
+function setTxLog(t) { save('hp_txlog', t); }
+function getRewards() { return load('hp_rewards', []); }
+function setRewards(r) { save('hp_rewards', r); }
+
+function calcTotalEarned() {
+  const habits = getHabits();
+  const logs = getLogs();
+  const bonusMl = parseInt(load('hp_workout_bonus', 1000));
+  let total = 0;
+  Object.keys(logs).forEach(dk => {
+    const log = logs[dk];
+    const workoutDone = habits.some(wh => wh.type === 'workout' && !!log[wh.id]);
+    habits.forEach(h => {
+      let done = false;
+      if (h.type === 'water') {
+        const tgt = (parseFloat(h.waterTargetMl)||2000) + (workoutDone ? bonusMl : 0);
+        done = parseFloat(log[h.id]||0) >= tgt;
+      } else if (h.type === 'counter') done = parseInt(log[h.id]||0) >= parseInt(h.counterTarget||1);
+      else done = !!log[h.id];
+      if (done) total += h.points || 1;
+    });
+  });
+  return total;
+}
+
+function calcTotalSpent() {
+  return getTxLog().filter(t => t.type === 'spend').reduce((s, t) => s + t.amount, 0);
+}
+
+function calcBalance() {
+  return calcTotalEarned() - calcTotalSpent();
+}
+
+function calcDailyPts(days) {
+  const habits = getHabits();
+  const logs = getLogs();
+  const bonusMl = parseInt(load('hp_workout_bonus', 1000));
+  const result = [];
+  const today = new Date();
+  for (let i = days - 1; i >= 0; i--) {
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    const key = dateKey(d);
+    const log = logs[key] || {};
+    const workoutDone = habits.some(wh => wh.type === 'workout' && !!log[wh.id]);
+    let pts = 0;
+    habits.forEach(h => {
+      let done = false;
+      if (h.type === 'water') {
+        const tgt = (parseFloat(h.waterTargetMl)||2000) + (workoutDone ? bonusMl : 0);
+        done = parseFloat(log[h.id]||0) >= tgt;
+      } else if (h.type === 'counter') done = parseInt(log[h.id]||0) >= parseInt(h.counterTarget||1);
+      else done = !!log[h.id];
+      if (done) pts += h.points || 1;
+    });
+    result.push({ key, day: d.getDate(), pts });
+  }
+  return result;
+}
+
+function renderRewards() {
+  const balance = calcBalance();
+  const totalEarned = calcTotalEarned();
+  const totalSpent = calcTotalSpent();
+
+  document.getElementById('wallet-balance').innerHTML = `${balance} <small>pts</small>`;
+  document.getElementById('wallet-total').textContent = `${totalEarned} pts earned · ${totalSpent} pts spent`;
+
+  // Daily chart — last 14 days
+  const daily = calcDailyPts(14);
+  const maxPts = Math.max(1, ...daily.map(d => d.pts));
+  const chart = document.getElementById('pts-chart');
+  chart.innerHTML = daily.map(d => `
+    <div class="pts-bar-wrap">
+      <div class="pts-bar" style="height:${Math.round(d.pts / maxPts * 52)}px;opacity:${d.pts > 0 ? 1 : 0.18}"></div>
+      <div class="pts-bar-lbl">${d.day}</div>
+    </div>`).join('');
+
+  // Rewards list
+  const rewards = getRewards();
+  const rewardsList = document.getElementById('rewards-list');
+  if (rewards.length === 0) {
+    rewardsList.innerHTML = '<div style="color:var(--text2);font-size:14px;text-align:center;padding:20px 0">No rewards yet — add one below!</div>';
+  } else {
+    rewardsList.innerHTML = rewards.map(r => {
+      const canAfford = balance >= r.cost;
+      return `<div class="reward-card">
+        <div class="reward-icon">${r.emoji}</div>
+        <div class="reward-body">
+          <div class="reward-name">${r.name}</div>
+          <div class="reward-cost">🌟 ${r.cost} pts</div>
+          ${r.desc ? `<div class="reward-desc">${r.desc}</div>` : ''}
+        </div>
+        <button class="redeem-btn" ${canAfford ? '' : 'disabled'} onclick="redeemReward('${r.id}')">
+          ${canAfford ? 'Redeem' : 'Need ' + (r.cost - balance) + ' more'}
+        </button>
+      </div>`;
+    }).join('');
+  }
+
+  // Transaction history
+  const txs = getTxLog().slice().reverse();
+  const txList = document.getElementById('tx-list');
+  if (txs.length === 0) {
+    txList.innerHTML = '<div style="color:var(--text2);font-size:13px;text-align:center;padding:12px 0">No transactions yet</div>';
+  } else {
+    txList.innerHTML = txs.slice(0, 20).map(t => `
+      <div class="tx-row">
+        <div>
+          <div class="tx-label">${t.type === 'spend' ? '🎁 ' : '⭐ '}${t.label}</div>
+          <div class="tx-date">${t.date}</div>
+        </div>
+        <div class="${t.type === 'spend' ? 'tx-amt-neg' : 'tx-amt-pos'}">
+          ${t.type === 'spend' ? '−' : '+'}${t.amount} pts
+        </div>
+      </div>`).join('');
+  }
+}
+
+function redeemReward(id) {
+  const rewards = getRewards();
+  const r = rewards.find(rw => rw.id === id);
+  if (!r) return;
+  const balance = calcBalance();
+  if (balance < r.cost) return;
+  if (!confirm(`Redeem "${r.name}" for ${r.cost} points?`)) return;
+  const txs = getTxLog();
+  txs.push({ type: 'spend', label: r.name, amount: r.cost, date: new Date().toLocaleDateString() });
+  setTxLog(txs);
+  renderRewards();
+  showToast('🎁 Redeemed: ' + r.name);
+}
+
+// Spend modal
+function openSpendModal() {
+  document.getElementById('spend-label').value = '';
+  document.getElementById('spend-amount').value = '';
+  document.getElementById('spend-balance-hint').textContent = 'Available balance: ' + calcBalance() + ' pts';
+  document.getElementById('spend-modal').classList.add('open');
+  document.getElementById('spend-label').focus();
+}
+function closeSpendModal() { document.getElementById('spend-modal').classList.remove('open'); }
+function confirmSpend() {
+  const label = document.getElementById('spend-label').value.trim() || 'Manual spend';
+  const amount = parseInt(document.getElementById('spend-amount').value);
+  if (!amount || amount < 1) { document.getElementById('spend-amount').focus(); return; }
+  const balance = calcBalance();
+  if (amount > balance) { showToast('Not enough points!'); return; }
+  const txs = getTxLog();
+  txs.push({ type: 'spend', label, amount, date: new Date().toLocaleDateString() });
+  setTxLog(txs);
+  closeSpendModal();
+  renderRewards();
+  showToast('− ' + amount + ' pts spent');
+}
+
+// Add reward modal
+let selectedRewardEmoji = '🎁';
+function openAddRewardModal() {
+  const grid = document.getElementById('reward-emoji-grid');
+  grid.innerHTML = '';
+  selectedRewardEmoji = REWARD_EMOJIS[0];
+  REWARD_EMOJIS.forEach(e => {
+    const btn = document.createElement('button');
+    btn.className = 'emoji-btn' + (e === selectedRewardEmoji ? ' selected' : '');
+    btn.textContent = e;
+    btn.onclick = () => {
+      selectedRewardEmoji = e;
+      grid.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    };
+    grid.appendChild(btn);
+  });
+  document.getElementById('reward-name').value = '';
+  document.getElementById('reward-cost').value = '';
+  document.getElementById('reward-desc').value = '';
+  document.getElementById('add-reward-modal').classList.add('open');
+  document.getElementById('reward-name').focus();
+}
+function closeAddRewardModal() { document.getElementById('add-reward-modal').classList.remove('open'); }
+function saveReward() {
+  const name = document.getElementById('reward-name').value.trim();
+  if (!name) { document.getElementById('reward-name').focus(); return; }
+  const cost = parseInt(document.getElementById('reward-cost').value) || 10;
+  const desc = document.getElementById('reward-desc').value.trim();
+  const rewards = getRewards();
+  rewards.push({ id: Date.now().toString(), name, cost, desc, emoji: selectedRewardEmoji });
+  setRewards(rewards);
+  closeAddRewardModal();
+  renderRewards();
+  showToast('Reward added!');
+}
+
+
+// ─── Rewards share ───────────────────────────────────────────
+function exportRewards() {
+  const rewards = getRewards();
+  if (rewards.length === 0) { showToast('No rewards to export!'); return; }
+  const blob = new Blob([JSON.stringify({ habitpulse_rewards: true, rewards }, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'habitpulse-rewards.json'; a.click();
+  URL.revokeObjectURL(url);
+  showToast('Rewards exported!');
+}
+
+function importRewards(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!data.habitpulse_rewards || !Array.isArray(data.rewards)) {
+        showToast('Invalid rewards file'); return;
+      }
+      const existing = getRewards();
+      // Merge: add only rewards not already present (by name)
+      const existingNames = existing.map(r => r.name.toLowerCase());
+      const toAdd = data.rewards.filter(r => !existingNames.includes(r.name.toLowerCase()));
+      const merged = [...existing, ...toAdd.map(r => ({ ...r, id: Date.now().toString() + Math.random() }))];
+      setRewards(merged);
+      renderRewards();
+      showToast(`Imported ${toAdd.length} reward${toAdd.length !== 1 ? 's' : ''}!`);
+    } catch {
+      showToast('Could not read file');
+    }
+    event.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+// ─── Init ─────────────────────────────────────────────────────
+function init() {
+  // If no habits, add defaults
+  if (getHabits().length === 0) {
+    const defaults = [
+      { id: '1', name: 'No snacks', type: 'boolean', emoji: '🥗', points: 1 },
+      { id: '3', name: 'Workout', type: 'workout', emoji: '💪', points: 1 },
+      { id: '2', name: 'Drink water', type: 'water', emoji: '💧', points: 1,
+        waterTargetMl: 2000,
+        quickAmounts: [
+          {label: 'Glass 33cl', ml: 330},
+          {label: 'Bottle 50cl', ml: 500},
+          {label: 'Bottle 1L', ml: 1000},
+        ]
+      },
+    ];
+    setHabits(defaults);
+  }
+  renderDateStrip();
+  renderToday();
+  // Close modal on overlay click
+  document.getElementById('add-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeAddModal();
+  });
+  document.getElementById('spend-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeSpendModal();
+  });
+  document.getElementById('add-reward-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeAddRewardModal();
+  });
+}
+
+init();
+</script>
+</body>
+</html>
